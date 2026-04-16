@@ -778,9 +778,8 @@ body::before{
 <div class="petal" style="left:92%;background:#e8c890;animation-duration:8.5s;animation-delay:5s;"></div>
 
 <!-- YouTube iframe (hidden) -->
-<audio id="bg-music" preload="auto">
-  <source src="musica.mp3" type="audio/mpeg">
-</audio>
+<iframe id="yt-frame" src="" allow="autoplay" allowfullscreen style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;"></iframe>
+
 <div class="page">
   <div class="card">
 
@@ -854,7 +853,7 @@ body::before{
 
 <!-- Music player bar -->
 <div class="music-bar">
-  < >
+  <button class="music-icon" id="musicBtn" onclick="toggleMusic()">▶</button>
   <div class="music-info">
     <span class="music-song">A Thousand Years</span>
     <span class="music-artist">Christina Perri</span>
@@ -922,31 +921,9 @@ function showEnvelope(){
 
 // ========== OPEN ENVELOPE ==========
 var envelopeOpened = false;
-
 function openEnvelope(){
   if(envelopeOpened) return;
   envelopeOpened = true;
-
-  // 💌 animación del sobre
-  document.getElementById("theEnvelope").classList.add("opening");
-
-  // 🎵 música (forma correcta)
-  const audio = document.getElementById("bg-music");
-
-  audio.currentTime = 0;
-  audio.volume = 1;
-
-  audio.play().catch(e => {
-    console.log("Error audio:", e);
-  });
-
-  // ⏳ pasar a invitación
-  setTimeout(() => {
-    document.getElementById("envelope-screen").style.display = "none";
-    document.getElementById("invitation-screen").style.display = "block";
-  }, 1800);
-}
-  
 
   // Animate envelope
   document.getElementById('theEnvelope').classList.add('opening');
