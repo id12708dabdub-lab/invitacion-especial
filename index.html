@@ -854,7 +854,7 @@ body::before{
 
 <!-- Music player bar -->
 <div class="music-bar">
-  <button class="music-icon" id="musicBtn" onclick="toggleMusic()">▶</button>
+  < >
   <div class="music-info">
     <span class="music-song">A Thousand Years</span>
     <span class="music-artist">Christina Perri</span>
@@ -922,22 +922,30 @@ function showEnvelope(){
 
 // ========== OPEN ENVELOPE ==========
 var envelopeOpened = false;
+
 function openEnvelope(){
   if(envelopeOpened) return;
   envelopeOpened = true;
 
+  // 💌 animación del sobre
+  document.getElementById("theEnvelope").classList.add("opening");
+
+  // 🎵 música (forma correcta)
   const audio = document.getElementById("bg-music");
 
   audio.currentTime = 0;
-  audio.muted = true;
+  audio.volume = 1;
 
-  audio.play().then(() => {
-    audio.muted = false;
-    audio.volume = 1;
-  }).catch(e => console.log("Error audio:", e));
+  audio.play().catch(e => {
+    console.log("Error audio:", e);
+  });
 
+  // ⏳ pasar a invitación
+  setTimeout(() => {
+    document.getElementById("envelope-screen").style.display = "none";
+    document.getElementById("invitation-screen").style.display = "block";
+  }, 1800);
 }
-
   
 
   // Animate envelope
