@@ -926,6 +926,20 @@ function openEnvelope(){
   if(envelopeOpened) return;
   envelopeOpened = true;
 
+  const audio = document.getElementById("bg-music");
+
+  audio.currentTime = 0;
+  audio.muted = true;
+
+  audio.play().then(() => {
+    audio.muted = false;
+    audio.volume = 1;
+  }).catch(e => console.log("Error audio:", e));
+
+}
+
+  
+
   // Animate envelope
   document.getElementById('theEnvelope').classList.add('opening');
 
